@@ -1,0 +1,5 @@
+services:
+  web:
+    build: .
+    volumes:
+      - ./build_app:/app/build
