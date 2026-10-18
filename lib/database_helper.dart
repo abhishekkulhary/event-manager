@@ -10,6 +10,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'constants.dart';
+import 'data/sample_guests.dart';
+import 'data/sample_items.dart';
 import 'models/guest.dart';
 import 'models/item.dart';
 import 'models/statistic.dart';
@@ -315,6 +317,20 @@ class DatabaseHelper {
         await updateMoneyItem(item);
       }
     }
+  }
+
+  /// Seeds the fictional sample guests on first run, so a fresh install and
+  /// the web demo have something to show. Sample money entries are added only
+  /// on a truly fresh install (both lists empty), so deleting your own entries
+  /// never brings the samples back.
+  Future<void> seedSampleGuestsIfEmpty() async {
+    final db = await instance.guestDatabase;
+    final count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM guests')) ?? 0;
+    if (count > 0) return;
+    await initGuests(sampleGuests);
+    final money = await instance.moneyDatabase;
+    final items = Sqflite.firstIntValue(await money.rawQuery('SELECT COUNT(*) FROM items')) ?? 0;
+    if (items == 0) await initMoneyItems(sampleItems);
   }
 
   Future<void> initGuests(List<Guest> guests) async {

@@ -18,3 +18,6 @@ final statuses = [
   'Done',
   'Not Done',
 ];
+
+/// Currency shown in the money ledger.
+const currencySymbol = '₹';
