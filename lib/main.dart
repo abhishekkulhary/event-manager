@@ -1,5 +1,6 @@
 import 'package:event_manager/db/configure_database.dart';
 import 'package:event_manager/features/get_the_app/get_the_app_screen.dart';
+import 'package:event_manager/features/get_the_app/get_the_app_strings.dart';
 import 'package:event_manager/screens/guests/guest_list_screen.dart';
 import 'package:event_manager/screens/money/item_list_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -63,7 +64,7 @@ class MainScreen extends StatelessWidget {
               const SizedBox(height: 20),
               TextButton.icon(
                 icon: const Icon(Icons.download_outlined),
-                label: const Text('Get the app'),
+                label: Text(GetTheAppStrings.of(context).getTheApp),
                 onPressed: () {
                   Navigator.push(
                     context,
