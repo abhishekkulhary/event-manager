@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../database_helper.dart';
 import '../features/get_the_app/get_the_app_screen.dart';
 import '../features/get_the_app/get_the_app_strings.dart';
+import '../features/get_the_app/build_stamp.dart';
 import '../models/statistic.dart';
 import '../ui/theme.dart';
 import '../ui/widgets.dart';
@@ -156,6 +157,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ],
+                const SizedBox(height: 20),
+                const Center(
+                  child: BuildStamp(
+                    style: TextStyle(fontSize: 12, color: EmColors.muted, letterSpacing: 0.3),
+                    accent: EmColors.magenta,
+                  ),
+                ),
               ],
             ),
           ),
